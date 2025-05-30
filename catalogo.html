@@ -1,83 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAXICAR</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <title>MAXICAR</title>
 </head>
 <body>
-    <!-- Modal para la compra -->
+
+<!-- Modal de compra -->
 <div id="modal-compra" class="modal">
   <div class="modal-contenido">
     <span class="cerrar">&times;</span>
     <form id="formulario-compra">
-    <h2>Formulario de Compra</h2>
-    <label>Ciudad o Estado:</label>
-    <input type="text" name="ciudad" required>
-
-    <label>Colonia:</label>
-    <input type="text" name="colonia" required>
-
-    <label>Casa:</label>
-    <input type="text" name="casa" required>
-
-    <label>Número de Teléfono:</label>
-    <input type="tel" name="telefono" required>
-
-    <label>Nombre de Propietario:</label>
-    <input type="text" name="casa" required>
-
-    <label>Número de Tarjeta:</label>
-    <input type="text" name="tarjeta" pattern="\d{16}" maxlength="16" required placeholder="16 dígitos">
-
-    <label>PIN:</label>
-    <input type="password" name="pin" pattern="\d{4}" maxlength="4" required placeholder="4 dígitos">
-
-    <button type="submit">Confirmar Compra</button>
-</form>
-</div>
+      <h2>Formulario de Compra</h2>
+      <label>Ciudad o Estado:</label>
+      <input type="text" name="ciudad" required />
+      <label>Colonia:</label>
+      <input type="text" name="colonia" required />
+      <label>Casa:</label>
+      <input type="text" name="casa" required />
+      <label>Número de Teléfono:</label>
+      <input type="tel" name="telefono" required />
+      <label>Número de Tarjeta:</label>
+      <input type="text" name="tarjeta" pattern="\d{16}" maxlength="16" required placeholder="16 dígitos" />
+      <label>PIN:</label>
+      <input type="password" name="pin" pattern="\d{4}" maxlength="4" required placeholder="4 dígitos" />
+      <button type="submit">Confirmar Compra</button>
+    </form>
+  </div>
 </div>
 
-    <div class="header">
-    <div class="contenedor">
-        <img src="images - copia/logo.png" class="logo"> 
-    </div>
+<!-- Encabezado con logo -->
+<div class="header">
+  <div class="contenedor">
+    <img src="images - copia/logo.png" class="logo" alt="MAXICAR logo" />
+  </div>
 </div>
-<br></br>
-    <section class="bienvenida">
-        <h1>¡Bienvenido!</h1>
-        <p>Aquí encontrara las categorias más vendidas </p>
-        <p>Hecho por Citlaly Yoselin Alvarado Ortiz.</p>
-    </section>
-    <br></br>
-    <div class="contenedor">
-    <h4> Eliga una categoría </h4>
-    <br></div>
-     <center>
-        <select id="categorias" class="select-categorias">
-            <option value="familiar">Familiar</option>
-            <option value="furgoneta">Furgoneta</option>
-            <option value="todoterreno">Todoterreno</option>
-            <option value="camionetas">Camionetas</option>
-            <option value="descapotable">Descapotable</option>
-        </select>
-    </center>
-    </div>
 
-   <div id="contenedor-autos" class="autos"></div>
-<script src="script.js"></script> 
+<!-- Bienvenida -->
+<section class="bienvenida">
+  <h1>¡Bienvenido!</h1>
+  <p>Aquí encontrará las categorías más vendidas</p>
+  <p>Hecho por Citlaly Yoselin Alvarado Ortiz.</p>
+</section>
+
+<!-- Selección de categoría -->
+<div class="contenedor">
+  <h4>Elija una categoría</h4>
+</div>
+
+<div class="categorias-grid">
+  <div class="categoria" data-categoria="familiar">
+    <img src="images - copia/carro5.png" alt="Familiar" />
+    <p>Familiar</p>
+  </div>
+  <div class="categoria" data-categoria="furgoneta">
+    <img src="images - copia/carro4.png" alt="Furgoneta" />
+    <p>Furgoneta</p>
+  </div>
+  <div class="categoria" data-categoria="todoterreno">
+    <img src="images - copia/carro3.png" alt="Todoterreno" />
+    <p>Todoterreno</p>
+  </div>
+  <div class="categoria" data-categoria="camionetas">
+    <img src="images - copia/carro2.png" alt="Camionetas" />
+    <p>Camionetas</p>
+  </div>
+  <div class="categoria" data-categoria="descapotable">
+    <img src="images - copia/carro1.png" alt="Descapotable" />
+    <p>Descapotable</p>
+  </div>
+</div>
+
+<div id="contenedor-autos" class="autos"></div>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("categorias").addEventListener("change", function() {
-        let categoriaSeleccionada = this.value;
-        if (categoriaSeleccionada) {
-            mostrarAutos(categoriaSeleccionada);
-        }
-    });
-});
-
 const autosPorCategoria = {
     familiar: [
        { imagen: "images - copia/j28.png", nombre: "Audi A4", año: "2023", precio: "$904,900", velocidad: "210 km/h", fuerza: "248 HP", descripcion: "Audi A4 es pura elegancia, con un diseño exterior que se inspira en el espíritu deportivo de la legendaria tecnología quattro. " },
@@ -137,255 +134,73 @@ const autosPorCategoria = {
 };
 
 function mostrarAutos(categoria) {
-    // Abrir y cerrar modal de compra
-document.addEventListener("click", function(event) {
+  const contenedor = document.getElementById("contenedor-autos");
+  contenedor.innerHTML = "";
+
+  if (!autosPorCategoria[categoria]) return;
+
+  autosPorCategoria[categoria].forEach(auto => {
+    const div = document.createElement("div");
+    div.classList.add("auto");
+    div.innerHTML = `
+      <img src="${auto.imagen}" alt="${auto.nombre}" />
+      <h3>${auto.nombre}</h3>
+      <p><strong>Año:</strong> ${auto.año}</p>
+      <p><strong>Precio:</strong> ${auto.precio}</p>
+      <p><strong>Velocidad Máxima:</strong> ${auto.velocidad}</p>
+      <p><strong>Fuerza:</strong> ${auto.fuerza}</p>
+      <p><strong>Descripción:</strong> ${auto.descripcion}</p>
+      <button class="btn-comprar">Comprar</button>`;
+    contenedor.appendChild(div);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".categoria").forEach(item => {
+    item.addEventListener("click", function () {
+      const categoria = this.getAttribute("data-categoria");
+      mostrarAutos(categoria);
+    });
+  });
+
+  // Eventos para modal
+  document.addEventListener("click", function (event) {
     if (event.target.classList.contains("btn-comprar")) {
-        document.getElementById("modal-compra").style.display = "flex";
+      document.getElementById("modal-compra").style.display = "flex";
     }
-
     if (event.target.classList.contains("cerrar")) {
-        document.getElementById("modal-compra").style.display = "none";
+      document.getElementById("modal-compra").style.display = "none";
     }
-});
+  });
 
-window.addEventListener("click", function(event) {
-    let modal = document.getElementById("modal-compra");
+  window.addEventListener("click", function (event) {
+    const modal = document.getElementById("modal-compra");
     if (event.target === modal) {
-        modal.style.display = "none";
+      modal.style.display = "none";
     }
-});
-
-document.getElementById("formulario-compra").addEventListener("submit", function(e) {
+  });
+  document.getElementById("formulario-compra").addEventListener("submit", function (e) {
     e.preventDefault();
     alert("¡Compra confirmada! Pronto nos comunicaremos contigo.");
     document.getElementById("modal-compra").style.display = "none";
+  });
 });
-
-    let contenedor = document.getElementById("contenedor-autos");
-    contenedor.innerHTML = "";
-
-    if (!autosPorCategoria[categoria]) {
-        console.error("Categoría no encontrada:", categoria);
-        return;
-    }
-
-    autosPorCategoria[categoria].forEach(auto => {
-        let div = document.createElement("div");
-        div.classList.add("auto");
-        
-div.innerHTML = `
-    <img src="${auto.imagen}" alt="${auto.nombre}">
-    <h3>${auto.nombre}</h3>
-    <p><strong>Año:</strong> ${auto.año}</p>
-    <p><strong>Precio:</strong> ${auto.precio}</p>
-    <p><strong>Velocidad Máxima:</strong> ${auto.velocidad}</p>
-    <p><strong>Fuerza:</strong> ${auto.fuerza}</p>
-    <p><strong>Descripción:</strong> ${auto.descripcion}</p>
-    <button class="btn-comprar">Comprar</button>
-`;
-        contenedor.appendChild(div);
-    });
-}
 </script>
 
-    <!-- FOOTER -->
-
-    <footer class="footer">
-    <div class="redes"> 
+<!-- Footer -->
+<footer class="footer">
+  <div class="redes">
     <a href="https://www.tiktok.com/@yossealv3?lang=es" target="_blank">
-        <img src="images - copia/tiktok.png" alt="Tiktok" class="redes-icono"> Tik Tok
+      <img src="images - copia/tiktok.png" alt="TikTok" class="redes-icono" /> TikTok
     </a>
     <a href="https://www.instagram.com/ortiz_8y8/" target="_blank">
-        <img src="images - copia/instagram.png" alt="Instagram" class="redes-icono"> Instagram
+      <img src="images - copia/instagram.png" alt="Instagram" class="redes-icono" /> Instagram
     </a>
     <a href="https://x.com/MAXICAR880" target="_blank">
-        <img src="images - copia/X.png" alt="X" class="redes-icono"> X
+      <img src="images - copia/X.png" alt="X" class="redes-icono" /> X
     </a>
-</div>
-</div>
+  </div>
 </footer>
 
-<style>
-    /* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* HEADER */
-.header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px;
-    background-color: #444;
-}
-
-.contenedor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.logo {
-    max-width: 150px;
-    height: auto;
-}
-
-/* SECCIÓN BIENVENIDA */
-.bienvenida {
-    text-align: center;
-    padding: 40px 20px;
-    background: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    border-radius: 10px;
-}
-
-/* Estilo para el botón de categorías */
-.btn-categorias {
-    background-color: #888;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.btn-categorias:hover {
-    background-color: #aaa;
-}
-
-/* Menú desplegable */
-.categorias-menu {
-    display: none;
-    margin-top: 10px;
-}
-
-.categorias-menu .btn-categoria {
-    background-color: #ccc;
-    color: black;
-    border: none;
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-}
-
-.categorias-menu .btn-categoria:hover {
-    background-color: #bbb;
-}
-
-/* Cuadros horizontales para mostrar los autos */
-.autos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.auto {
-    background-color: white; /* Fondo blanco */
-    border-radius: 10px;
-    width: 300px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra alrededor del cuadro */
-    transition: transform 0.3s ease; /* Para efecto de hover */
-}
-
-.auto:hover {
-    transform: translateY(-10px); /* Efecto de elevación al pasar el ratón */
-}
-
-.auto img {
-    width: 100%;
-    border-radius: 10px;
-    height: auto;
-}
-
-.auto h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
-}
-
-.auto p {
-    font-size: 0.9em;
-    margin: 5px 0;
-}
-
-/* Mostrar el menú al hacer clic en el botón */
-.categorias-menu.active {
-    display: block;
-}
-
-/* Estilo para las categorías seleccionadas */
-.btn-categoria.selected {
-    background-color: #bbb;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-contenido {
-    background-color: white;
-    padding: 20px;
-    border-radius: 15px;
-    width: 300px;
-    max-width: 90%;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    position: relative;
-}
-
-.modal-contenido h3 {
-    margin-top: 0;
-}
-
-.modal-contenido input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.modal-contenido button {
-    background-color: #555;
-    color: white;
-    border: none;
-    padding: 10px;
-    width: 100%;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal-contenido button:hover {
-    background-color: #333;
-}
-
-.cerrar {
-    position: absolute;
-    right: 10px; top: 10px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-
-</style>
 </body>
 </html>
-
