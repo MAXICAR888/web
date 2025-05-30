@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>MAXICAR</title>
-    <link rel="stylesheet" href="style.css">
+    
     <script defer src="script.js"></script>
 </head>
 <body>
@@ -14,19 +15,19 @@
     </div>
 </div>
 <br></br>
+
     <section class="bienvenida">
         <h1>¡Bienvenido!</h1>
         <p>Le ofrecemos unos vehiculos de alta calidad con los mejores precios y un servicio excelente y por supuesto garantias.</p>
         <p>Hecho por Citlaly Yoselin Alvarado Ortiz.</p>
     </section>
 
-<!-- INFORMACION -->
  <center>
-
 <button class="info-boton" onclick="window.location.href='catalogo.html'">
     <img src="images - copia/car-solid.svg">
     <span>Catalogo</span>
 </button>
+
 <button class="info-boton" onclick="mostrarInfo('En Maxicar, no solo te ofrecemos los mejores vehículos, sino también una experiencia completa con servicios diseñados para brindarte confianza, comodidad y seguridad en cada kilómetro que recorras. Te ofrecemos mantenimiento y reparaciones para tu vehículo siempre en las mejores condiciones.')">
     <img src="images - copia/wrench-solid.svg">
     <span>Servicios</span>
@@ -52,8 +53,10 @@
     <img src="images - copia/book-solid.svg">
     <span>Hitoria</span>
 </button>
+
 <br></br>
 <h1>¡Lo mas vendido!</h1>
+
 <div id="info-box" class="info-box" style="display: none;">
     <span id="close-btn" onclick="cerrarInfo()">&times;</span>
     <p id="info-text"></p>
@@ -73,7 +76,6 @@ function cerrarInfo() {
 }
 </script>
 <br></br>
-<!-- AUTOS -->
 
 <div class="seleccion-imagenes">
     <div class="imagen" onclick="mostrarDetalles('car1')">
@@ -98,35 +100,30 @@ function cerrarInfo() {
     </div>
 </div>
 <br></br>
-    <!-- TESTIMONIOS -->
+  
 
     <section class="testimonios">
         <h2>Comentarios</h2>
         <div class="testimonio">
-            <img src="images - copia/t1.jpg" alt="Persona 1">
+            <img src="images - copia/persona1.png" alt="Persona 1">
             <p>“MaxiCar me ayudó a encontrar el auto perfecto. ¡Recomendado!”</p>
         </div>
         <div class="testimonio">
-            <img src="images - copia/t2.jpg" alt="Persona 2">
+            <img src="images - copia/persona3.png" alt="Persona 2">
             <p>“Excelente servicio y atención. Compré mi auto con total confianza.”</p>
         </div>
         <div class="testimonio">
-            <img src="images - copia/t3.jpg" alt="Persona 3">
+            <img src="images - copia/persona2.png" alt="Persona 3">
             <p>"Me encantó la atención al cliente, resolvieron todas mis dudas."</p>
         </div>
         <div class="testimonio">
-            <img src="images - copia/t4.jpg" alt="Persona 4">
-            <p>"La página es muy fácil de usar.Pude encontrar toda la información." </p>
+            <img src="images - copia/persona4.png" alt="Persona 4">
+            <p>"La página es muy fácil de usar. Pude encontrar toda la información." </p>
         </div>
     </section>
-
-    <!-- FOOTER -->
-
-    <footer class="footer">
-        <div class="container">
-             <div class="contenedor">
-    <img src="images - copia/logo.png" class="logo">
             </nav>
+            <br></br>
+            <br></br>
             <div class="redes"> 
     <a href="https://www.tiktok.com/@yossealv3?lang=es" target="_blank">
         <img src="images - copia/tiktok.png" alt="Tiktok" class="redes-icono"> Tik Tok
@@ -138,9 +135,7 @@ function cerrarInfo() {
         <img src="images - copia/X.png" alt="X" class="redes-icono"> X
     </a>
 </div>
-
-        </div>
-    </footer>
+</div>
 </body>
 </html>
 
